@@ -14,12 +14,17 @@ jobs:
       - name: Simular Compilación (Build)
         run: |
           echo "Compilando el código de la rama: ${{ github.ref_name }}"
-          # Aquí simulamos que el binario se crea con la configuración de la rama
-          echo "Generando artefacto: app_${{ github.ref_name }}.bin" > artifact.txt
+          echo "Generando artefacto con la configuración de la rama..."
+          echo "APP_${{ github.ref_name }}_BUILD" > artifact.txt
           cat config.json >> artifact.txt
 
-      - name: Simular Despliegue
+      - name: Ejecutar Pruebas Automatizadas (Test & Start)
         run: |
-          echo "Desplegando en el entorno equivalente a ${{ github.ref_name }}..."
-          cat artifact.txt
-          echo "Despliegue completado con éxito."
+          echo "Arrancando la aplicación para validar que no haya errores fatales..."
+          node app.js
+          echo "Pruebas pasaron exitosamente."
+
+      - name: Simular Despliegue (Deploy)
+        run: |
+          echo "Desplegando la aplicación en el servidor correspondiente..."
+          echo "¡Despliegue completado!"
