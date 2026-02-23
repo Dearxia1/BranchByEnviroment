@@ -1,4 +1,4 @@
 {
-  "env": "development",
-  "api": "localhost:3000"
+    "env": "staging",
+    "api": "api.staging.com"
 }
