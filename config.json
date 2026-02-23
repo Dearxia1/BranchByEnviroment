@@ -1,4 +1,4 @@
 {
-  "env": "development",
-  "api": "localhost:3000"
+    "env": "production",
+    "api": "api.produccion-real.com"
 }
