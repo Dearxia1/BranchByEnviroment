@@ -1,0 +1,25 @@
+name: CI/CD Branch by Environment
+
+on:
+  push:
+    branches: [ main, staging, production ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Simular Compilación (Build)
+        run: |
+          echo "Compilando el código de la rama: ${{ github.ref_name }}"
+          # Aquí simulamos que el binario se crea con la configuración de la rama
+          echo "Generando artefacto: app_${{ github.ref_name }}.bin" > artifact.txt
+          cat config.json >> artifact.txt
+
+      - name: Simular Despliegue
+        run: |
+          echo "Desplegando en el entorno equivalente a ${{ github.ref_name }}..."
+          cat artifact.txt
+          echo "Despliegue completado con éxito."
